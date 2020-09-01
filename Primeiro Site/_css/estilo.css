@@ -14,7 +14,8 @@
         height: 60px;
     }
     
-    main {
+    main,
+    .content {
         margin: 0 auto;
         width: 980px;
         position: relative;
@@ -155,4 +156,31 @@
     .slick-dots li {
         padding-left: 10px;
         display: inline-block;
+    }
+    
+    .texto-intro {
+        text-align: center;
+    }
+    
+    .texto-intro p {
+        font-size: 15px;
+        color: #9a9a9a;
+    }
+    
+    .texto-intro h1 {
+        font-size: 28px;
+        color: #9a9a9a;
+        text-transform: uppercase;
+    }
+    
+    .col-3 {
+        width: 30%;
+        float: left;
+        position: relative;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    
+    .bloco-texto {
+        margin-top: 7em;
     }
