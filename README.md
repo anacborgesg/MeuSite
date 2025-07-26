@@ -1,2 +1,1 @@
-# MeuSite
- Meu primeiro WebSite utilizando HTML, CSS e JS
+Um portifólio que contém alguns aprendizados 
