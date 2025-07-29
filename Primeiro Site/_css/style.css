@@ -8,13 +8,13 @@
 /* Variáveis CSS para cores e gradientes */
 :root {
     --background-solid: #110415;
-    --background-light: #f5f5f5;
+    --background-alternative: #270d3a;
 
     --text-gradient-primary: linear-gradient(-225deg, #2cd8d5 0%, #6b8dd6 48%, #8e37d7 100%);
     --text-gradient-secondary: linear-gradient(-225deg, #a8bfff 0%, #884d80 100%);
 
     --light-text-color: #e0e0e0;
-    --dark-text-color: #333333;
+    --alternative-text-color: #dad3d3;
     --white-color: #ffffff;
 
     --header-background-solid: #110415;
@@ -76,7 +76,15 @@ body::after {
     75% { transform: translate(-40px, -20px) scale(0.95); }
     100% { transform: translate(0, 0) scale(1); }
 }
+.skill-card.clicked {
+    animation: skillClickEffect 0.3s ease-out;
+}
 
+@keyframes skillClickEffect {
+    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+    50% { transform: scale(1.03); box-shadow: 0 0 30px var(--btn-border-color); } /* Um brilho sutil ao clicar */
+    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+}
 /* HEADER */
 .header {
     display: flex;
@@ -176,7 +184,7 @@ section {
 }
 
 section.white-background {
-    background-color: var(--background-light);
+    background-color: var(--background-alternative);
     color: var(--dark-text-color);
 }
 
