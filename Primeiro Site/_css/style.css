@@ -1,31 +1,27 @@
-/* RESET E BASE */
+/* RESET E BASE (mantido o mesmo) */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Variáveis CSS para cores e gradientes */
+/* Variáveis CSS para cores e gradientes (ALTERADO) */
 :root {
     --background-solid: #110415;
-    --background-alternative: #270d3a;
-
     --text-gradient-primary: linear-gradient(-225deg, #2cd8d5 0%, #6b8dd6 48%, #8e37d7 100%);
     --text-gradient-secondary: linear-gradient(-225deg, #a8bfff 0%, #884d80 100%);
-
     --light-text-color: #e0e0e0;
-    --alternative-text-color: #dad3d3;
+    --dark-text-color: #e0e0e0;
     --white-color: #ffffff;
-
     --header-background-solid: #110415;
     --header-background-transparent: rgba(23, 12, 42, 0.7);
     --card-background-solid: rgba(23, 12, 42, 0.5);
     --border-color: rgba(255, 255, 255, 0.1);
-
     --btn-border-color: #646cff;
     --btn-liquid-color: #646cff;
-
-    --content-horizontal-padding-desktop: 100px;
+    
+    /* ALTERADO: Diminui o padding horizontal para desktop */
+    --content-horizontal-padding-desktop: 80px; /* Era 100px */
     --content-horizontal-padding-tablet: 40px;
     --content-horizontal-padding-mobile: 20px;
 }
@@ -39,9 +35,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
+    padding-top: 80px;
 }
 
-/* EFEITO DE FUNDO (BOLHA/BRILHO) */
+/* EFEITO DE FUNDO (BOLHA/BRILHO) (mantido o mesmo) */
 body::before,
 body::after {
     content: "";
@@ -76,25 +73,46 @@ body::after {
     75% { transform: translate(-40px, -20px) scale(0.95); }
     100% { transform: translate(0, 0) scale(1); }
 }
-.skill-card.clicked {
-    animation: skillClickEffect 0.3s ease-out;
-}
 
-@keyframes skillClickEffect {
-    0% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-    50% { transform: scale(1.03); box-shadow: 0 0 30px var(--btn-border-color); } /* Um brilho sutil ao clicar */
-    100% { transform: scale(1); box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-}
-/* HEADER */
+/* HEADER (mantido o mesmo) */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem var(--content-horizontal-padding-desktop);
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 80px;
     z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.header-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--header-background-solid);
+    backdrop-filter: blur(0px);
+    transition: backdrop-filter 0.3s ease, background-color 0.3s ease;
+    z-index: -1;
+}
+
+.header.scrolled .header-background {
+    background-color: rgba(23, 12, 42, 0.7);
+    backdrop-filter: blur(10px);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem var(--content-horizontal-padding-desktop);
+    position: relative;
+    z-index: 1;
 }
 
 .logo {
@@ -149,7 +167,7 @@ body::after {
     color: transparent !important;
 }
 
-/* MENU HAMBÚRGUER */
+/* MENU HAMBÚRGUER (mantido o mesmo) */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -167,13 +185,23 @@ body::after {
 .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
 .hamburger.toggle .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* SEÇÕES GERAIS E CONTAINER */
+/* SEÇÕES GERAIS E CONTAINER (ALTERADO) */
 .container {
-    max-width: 1800px;
+    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
+    max-width: 1400px; /* Era 1200px */
     margin: 0 auto;
     width: 100%;
     padding: 0 var(--content-horizontal-padding-desktop);
-    text-align: center;
+}
+
+/* Container para a combinação About Me e My Skills (ALTERADO) */
+.container-half {
+    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
+    max-width: 1400px; /* Era 1200px */
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+    text-align: left;
 }
 
 section {
@@ -181,11 +209,6 @@ section {
     background-color: var(--background-solid);
     position: relative;
     z-index: 1;
-}
-
-section.white-background {
-    background-color: var(--background-alternative);
-    color: var(--dark-text-color);
 }
 
 .section-title {
@@ -214,16 +237,7 @@ section.white-background {
     border-radius: 5px;
 }
 
-.white-background .section-title {
-    -webkit-text-fill-color: var(--dark-text-color);
-    background-image: none;
-    color: var(--dark-text-color);
-}
-.white-background .section-title::after { background: var(--btn-border-color); }
-.white-background p { color: var(--dark-text-color); }
-
-
-/* HERO SECTION */
+/* HERO SECTION (ALTERADO) */
 .hero-section {
     min-height: 100vh;
     padding-top: 100px;
@@ -241,12 +255,16 @@ section.white-background {
     gap: 80px;
     padding: 0 var(--content-horizontal-padding-desktop);
     height: 100%;
+    width: 100%;
+    max-width: 1400px; 
+    margin: 0 auto;
 }
 
 .hero-content {
     z-index: 1;
-    max-width: 55%;
+    max-width: 60%; 
     text-align: left;
+    flex-shrink: 0;
 }
 
 .hero-content h1 {
@@ -258,7 +276,10 @@ section.white-background {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    font-size: clamp(3.5rem, 5vw, 3.6rem);
+    font-size: clamp(3.6rem, 3.5vw, 3.2rem);
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
 }
 
 .hero-subtitle {
@@ -287,11 +308,12 @@ section.white-background {
 }
 
 .hero-description {
-    font-size: 1.5rem;
-    max-width: 700px;
+    font-size: 1.1rem;
+    max-width: 800px; 
     margin: 25px 0 40px 0;
     line-height: 1.6;
     font-family: "Roboto", sans-serif;
+    text-align: justify;
 }
 
 .hero-image-container {
@@ -302,6 +324,7 @@ section.white-background {
     justify-content: center;
     align-items: center;
     z-index: 1;
+    flex-shrink: 0;
 }
 
 .profile-image {
@@ -324,7 +347,6 @@ section.white-background {
     width: 380px;
     height: 380px;
     border: 2px solid rgba(138, 43, 226, 0.5);
-    /* Usando a nova animação de "blob" */
     animation: glowingBlob 20s infinite alternate ease-in-out;
 }
 
@@ -335,11 +357,10 @@ section.white-background {
     filter: blur(40px);
     bottom: 20px;
     right: 20px;
-    /* Nova animação de pulso e movimento sutil */
     animation: pulsingShift 5s infinite alternate;
 }
 
-/* ANIMAÇÕES NOVAS E MELHORADAS */
+/* ANIMAÇÕES (mantido o mesmo) */
 @keyframes glowingBlob {
     0% {
         transform: scale(0.9) translate(0, 0) rotate(0deg);
@@ -374,7 +395,7 @@ section.white-background {
     100% { transform: scale(0.95) translateX(0); filter: blur(35px); }
 }
 
-/* BOTÕES */
+/* BOTÕES (mantido o mesmo) */
 .btn {
     position: relative;
     padding: 1rem 2rem;
@@ -408,13 +429,158 @@ section.white-background {
     font-size: 0.9rem;
 }
 
-/* SEÇÃO PROJECTS */
+/* SEÇÃO COMBINADA ABOUT ME & MY SKILLS (ALTERADO) */
+.about-skills-combined {
+    display: flex;
+    flex-direction: row;
+    min-height: auto;
+    /* ALTERADO: Usa o novo padding */
+    padding: 60px var(--content-horizontal-padding-desktop);
+    align-items: flex-start;
+    gap: 80px;
+    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
+    max-width: 1400px; /* Era 1200px */
+    margin: 0 auto;
+}
+
+.about-me-half {
+    flex: 1;
+    min-width: 300px;
+    /* ALTERADO: Permite que ocupe um pouco mais de espaço se necessário */
+    max-width: 55%; /* Era 50% */
+    text-align: left;
+    color: var(--light-text-color);
+    padding-right: 20px;
+}
+
+.my-skills-half {
+    flex: 1;
+    min-width: 300px;
+    /* ALTERADO: Permite que ocupe um pouco mais de espaço se necessário */
+    max-width: 45%; /* Era 50%, ajustado para balancear com about-me-half */
+    text-align: left;
+    color: var(--light-text-color);
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.about-me-half .section-title, .my-skills-half .section-title {
+    font-size: 3rem;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+.my-skills-half .section-title {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.about-me-half .section-title::after, .my-skills-half .section-title::after {
+    margin: 10px 0 0;
+}
+
+.about-me-half p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+    /* ALTERADO: Aumenta a largura máxima para o texto se esticar mais */
+    max-width: 700px; /* Era 600px, para preencher melhor a nova max-width do half */
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* SKILLS - Sem as caixas para cada grupo (mantido o mesmo, apenas comentado) */
+.skills-group-grid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
+    align-items: flex-start;
+}
+
+.skill-category {
+    width: 100%;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.skill-category:last-child {
+    margin-bottom: 0;
+}
+
+.skill-category h3 {
+    font-size: 1.2rem;
+    color: var(--light-text-color);
+    margin-bottom: 15px;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    background-image: var(--text-gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+    text-align: left;
+}
+
+.skill-tags-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.skill-tag {
+    background-color: transparent;
+    color: var(--light-text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: none;
+}
+
+.skill-tag:hover {
+    background-color: var(--btn-liquid-color);
+    border-color: var(--btn-liquid-color);
+    color: var(--white-color);
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.skill-tag.clicked {
+    animation: skillTagClickEffect 0.3s ease-out;
+}
+
+@keyframes skillTagClickEffect {
+    0% { transform: scale(1); box-shadow: none; }
+    50% { transform: scale(1.03); box-shadow: 0 0 15px var(--btn-border-color); }
+    100% { transform: scale(1); box-shadow: none; }
+}
+
+/* SEÇÃO PROJECTS (ALTERADO) */
+.projects-section {
+    background-color: var(--background-solid);
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
-    width: 100%;
     margin-top: 40px;
+    justify-items: center;
 }
 
 .project-card {
@@ -425,6 +591,9 @@ section.white-background {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid var(--border-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    /* ALTERADO: Aumenta a largura máxima dos cards de projeto */
+    max-width: 450px; /* Era 400px */
 }
 
 .project-card:hover {
@@ -433,107 +602,60 @@ section.white-background {
 }
 
 .project-card h3 {
-    margin-bottom: 15px;
-    background-image: var(--text-gradient-secondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    font-family: "Montserrat", sans-serif;
     font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--light-text-color);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
 }
 
 .project-card p {
-    font-size: 1.15rem;
+    font-size: 1rem;
     color: var(--light-text-color);
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .project-links {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
 }
 
-/* SEÇÃO SKILLS */
-.skills .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
+/* SEÇÃO EDUCATION (ALTERADO) */
+.education {
+    background-color: var(--background-solid);
 }
-.skill-card {
-    background-color: var(--card-background-solid);
-    border-radius: 15px;
-    padding: 30px;
-    flex: 1 1 300px;
-    max-width: 320px;
+
+.education .container {
+    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
+    max-width: 1100px; /* Era 900px */
+    margin: 0 auto;
+    padding: 0 var(--content-horizontal-padding-desktop);
+}
+
+.education .section-title {
+    color: var(--light-text-color);
+    -webkit-text-fill-color: var(--light-text-color);
+    background-image: none;
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin: 4rem auto 2rem;
 }
-.skill-card:hover {
-    transform: translateY(-8px);
-    background-color: rgba(23, 12, 42, 0.7);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+
+.education .section-title::after {
+    background: var(--text-gradient-secondary);
+    margin-left: auto;
+    margin-right: auto;
 }
-.skill-card i {
-    font-size: 75px !important;
-    color: var(--light-text-color) !important;
+
+.education p {
+    font-size: 1.15rem;
+    line-height: 1.6;
     margin-bottom: 20px;
-    transition: color 0.3s ease;
-    font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free", "Font Awesome 5 Brands", "Font Awesome 5 Free" !important;
-    font-weight: 900 !important;
-}
-
-.skill-card:hover i {
-    background-image: var(--text-gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent !important;
-}
-
-.skill-card h3 {
-    margin-bottom: 15px;
-    background-image: var(--text-gradient-secondary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.8rem;
-    transition: background-image 0.3s ease;
-}
-
-.skill-card:hover h3 {
-    background-image: var(--text-gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-}
-.skill-card p {
-    font-size: 1.25rem;
+    text-align: center;
     color: var(--light-text-color);
 }
 
-/* SEÇÕES ABOUT ME E FORMAÇÃO */
-.about-me-section .container,
-.education .container {
-    max-width: 900px;
-}
-.about-me-section p,
-.education p {
-    font-size: 1.3rem;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* FOOTER */
+/* FOOTER (mantido o mesmo) */
 .footer {
     background-color: var(--header-background-solid);
     color: #fff;
@@ -558,16 +680,28 @@ section.white-background {
     color: transparent !important;
 }
 
-
-/* RESPONSIVO COM MEDIA QUERIES OTIMIZADAS */
+/* RESPONSIVO COM MEDIA QUERIES OTIMIZADAS (ALTERADO) */
 @media (max-width: 1100px) {
-    /* Ajustes para telas de notebooks e tablets maiores */
-    .header, .container {
+    .header-content, .container {
         padding-left: var(--content-horizontal-padding-tablet);
         padding-right: var(--content-horizontal-padding-tablet);
     }
-    .hero-container { gap: 40px; }
-    .hero-content h1 { font-size: clamp(2rem, 4.5vw, 3.5rem); }
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+    .download-btn {
+        align-self: center;
+    }
+    .hero-content h1 {
+        font-size: clamp(2.5rem, 4.5vw, 3rem);
+        white-space: normal;
+    }
     .hero-subtitle { font-size: clamp(1.2rem, 3.5vw, 2rem); }
     #typing-text { font-size: 60px; }
     .hero-description { font-size: 1.2rem; }
@@ -575,14 +709,55 @@ section.white-background {
     .circle-1 { width: 280px; height: 280px; }
     .circle-2 { width: 120px; height: 120px; filter: blur(30px); }
     .section-title { font-size: 3rem; }
+
+    /* Seção combinada em tablet: empilha About Me e My Skills */
+    .about-skills-combined {
+        flex-direction: column;
+        align-items: center;
+        /* ALTERADO: Usa o padding de tablet */
+        padding: 60px var(--content-horizontal-padding-tablet);
+        gap: 60px;
+        max-width: 100%; /* Permite que ocupe a largura total do viewport menos os paddings */
+    }
+    .about-me-half, .my-skills-half {
+        max-width: 100%;
+        padding: 0;
+        align-items: center;
+        text-align: center;
+    }
+    .my-skills-half {
+        padding-top: 40px;
+    }
+
+    .about-me-half p {
+        font-size: 1rem;
+        text-align: justify;
+    }
+    .about-me-half .section-title, .my-skills-half .section-title {
+        text-align: center;
+    }
+    .about-me-half .section-title::after, .my-skills-half .section-title::after {
+        margin: 10px auto 0;
+    }
+    .skill-category h3 {
+        text-align: center;
+    }
+    .skill-tags-grid {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 900px) {
-    /* Ajustes para tablets e telas menores */
+    /* ... (restante das media queries, mantido o mesmo ou com pequenos ajustes de padding/max-width) */
+    .header-content, .container {
+        padding-left: var(--content-horizontal-padding-tablet);
+        padding-right: var(--content-horizontal-padding-tablet);
+    }
     .hero-container {
         flex-direction: column;
         text-align: center;
         gap: 40px;
+        padding: 0 var(--content-horizontal-padding-tablet);
     }
     .hero-content {
         max-width: 100%;
@@ -614,13 +789,11 @@ section.white-background {
         animation: pulsingShift 5s infinite alternate;
     }
     .project-grid { grid-template-columns: 1fr; }
-    .skills .container { gap: 20px; }
-    .skill-card {
-        flex: 1 1 100%;
-        max-width: 100%;
+    .skills-group-grid {
+        justify-content: center;
     }
 
-    /* Menu Hamburguer */
+    /* Menu Hamburguer (mantido o mesmo) */
     .session {
         display: none;
         flex-direction: column;
@@ -646,8 +819,7 @@ section.white-background {
 }
 
 @media (max-width: 600px) {
-    /* Ajustes para telas de celulares */
-    .header, .container {
+    .header-content, .container {
         padding-left: var(--content-horizontal-padding-mobile);
         padding-right: var(--content-horizontal-padding-mobile);
     }
@@ -659,11 +831,24 @@ section.white-background {
     }
     #typing-text { font-size: 40px; }
     .hero-description { font-size: 1rem; }
-    .about-me-section p,
     .education p { font-size: 1rem; }
-    .skill-card i { font-size: 50px !important; }
-    .skill-card h3, .project-card h3 { font-size: 1.5rem; }
-    .skill-card p, .project-card p { font-size: 1rem; }
+    .project-card h3 { font-size: 1.5rem; }
+    .project-card p { font-size: 1rem; }
     body::before { top: 8%; left: 0%; width: 120px; height: 120px; filter: blur(50px); }
     body::after { bottom: 3%; right: 5%; width: 80px; height: 80px; filter: blur(30px); }
+
+    .about-me-half, .my-skills-half {
+        padding: 0 var(--content-horizontal-padding-mobile);
+    }
+    .about-me-half p { font-size: 0.9rem; text-align: left; }
+    .skill-category h3 {
+        text-align: left;
+    }
+    .skill-tags-grid {
+        justify-content: flex-start;
+    }
+    .skill-tag {
+        padding: 3px 6px;
+        font-size: 0.7rem;
+    }
 }
