@@ -1,11 +1,11 @@
-/* RESET E BASE (mantido o mesmo) */
+/* RESET E BASE */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Variáveis CSS para cores e gradientes (ALTERADO) */
+/* Variáveis CSS para cores e gradientes */
 :root {
     --background-solid: #110415;
     --text-gradient-primary: linear-gradient(-225deg, #2cd8d5 0%, #6b8dd6 48%, #8e37d7 100%);
@@ -20,8 +20,7 @@
     --btn-border-color: #646cff;
     --btn-liquid-color: #646cff;
     
-    /* ALTERADO: Diminui o padding horizontal para desktop */
-    --content-horizontal-padding-desktop: 80px; /* Era 100px */
+    --content-horizontal-padding-desktop: 80px;
     --content-horizontal-padding-tablet: 40px;
     --content-horizontal-padding-mobile: 20px;
 }
@@ -35,10 +34,10 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     position: relative;
-    padding-top: 80px;
+    padding-top: 80px; /* Para acomodar o header fixo */
 }
 
-/* EFEITO DE FUNDO (BOLHA/BRILHO) (mantido o mesmo) */
+/* EFEITO DE FUNDO (BOLHA/BRILHO) */
 body::before,
 body::after {
     content: "";
@@ -74,10 +73,10 @@ body::after {
     100% { transform: translate(0, 0) scale(1); }
 }
 
-/* HEADER (mantido o mesmo) */
+/* HEADER */
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center; /* Centraliza o conteúdo do header */
     align-items: center;
     position: fixed;
     top: 0;
@@ -113,6 +112,8 @@ body::after {
     padding: 1rem var(--content-horizontal-padding-desktop);
     position: relative;
     z-index: 1;
+    max-width: 1400px; 
+    margin: 0 auto;
 }
 
 .logo {
@@ -167,7 +168,7 @@ body::after {
     color: transparent !important;
 }
 
-/* MENU HAMBÚRGUER (mantido o mesmo) */
+/* MENU HAMBÚRGUER */
 .hamburger {
     display: none;
     cursor: pointer;
@@ -185,46 +186,49 @@ body::after {
 .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
 .hamburger.toggle .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* SEÇÕES GERAIS E CONTAINER (ALTERADO) */
+/* SEÇÕES GERAIS E CONTAINER */
 .container {
-    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
-    max-width: 1400px; /* Era 1200px */
+    max-width: 1400px; 
     margin: 0 auto;
     width: 100%;
     padding: 0 var(--content-horizontal-padding-desktop);
 }
 
-/* Container para a combinação About Me e My Skills (ALTERADO) */
+/* Container para a combinação About Me e My Skills (ajustado para ser um flex container) */
 .container-half {
-    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
-    max-width: 1400px; /* Era 1200px */
+    max-width: 1400px; 
     margin: 0 auto;
     width: 100%;
     padding: 0;
-    text-align: left;
 }
 
 section {
-    padding: 80px 0;
+    padding: 80px 0; /* Padding vertical para as seções */
     background-color: var(--background-solid);
     position: relative;
     z-index: 1;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
 }
 
+/* Regra geral para section-title, agora com alinhamento à esquerda por padrão */
 .section-title {
     font-size: 4rem;
-    text-align: center;
+    text-align: left; 
     background-image: var(--text-gradient-secondary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     color: transparent;
-    margin: 4rem auto 2rem;
+    margin-top: 4rem; 
+    margin-bottom: 2rem; 
     position: relative;
     font-family: "Montserrat", sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 700;
+    width: 100%; 
 }
 
 .section-title::after {
@@ -233,11 +237,11 @@ section {
     height: 5px;
     background: var(--text-gradient-secondary);
     display: block;
-    margin: 15px auto 0;
+    margin: 15px 0 0; 
     border-radius: 5px;
 }
 
-/* HERO SECTION (ALTERADO) */
+/* HERO SECTION */
 .hero-section {
     min-height: 100vh;
     padding-top: 100px;
@@ -360,7 +364,7 @@ section {
     animation: pulsingShift 5s infinite alternate;
 }
 
-/* ANIMAÇÕES (mantido o mesmo) */
+/* ANIMAÇÕES */
 @keyframes glowingBlob {
     0% {
         transform: scale(0.9) translate(0, 0) rotate(0deg);
@@ -395,7 +399,7 @@ section {
     100% { transform: scale(0.95) translateX(0); filter: blur(35px); }
 }
 
-/* BOTÕES (mantido o mesmo) */
+/* BOTÕES */
 .btn {
     position: relative;
     padding: 1rem 2rem;
@@ -429,25 +433,22 @@ section {
     font-size: 0.9rem;
 }
 
-/* SEÇÃO COMBINADA ABOUT ME & MY SKILLS (ALTERADO) */
+/* SEÇÃO COMBINADA ABOUT ME & MY SKILLS */
 .about-skills-combined {
     display: flex;
     flex-direction: row;
     min-height: auto;
-    /* ALTERADO: Usa o novo padding */
     padding: 60px var(--content-horizontal-padding-desktop);
     align-items: flex-start;
     gap: 80px;
-    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
-    max-width: 1400px; /* Era 1200px */
+    max-width: 1400px; 
     margin: 0 auto;
 }
 
 .about-me-half {
     flex: 1;
     min-width: 300px;
-    /* ALTERADO: Permite que ocupe um pouco mais de espaço se necessário */
-    max-width: 55%; /* Era 50% */
+    max-width: 55%;
     text-align: left;
     color: var(--light-text-color);
     padding-right: 20px;
@@ -456,8 +457,7 @@ section {
 .my-skills-half {
     flex: 1;
     min-width: 300px;
-    /* ALTERADO: Permite que ocupe um pouco mais de espaço se necessário */
-    max-width: 45%; /* Era 50%, ajustado para balancear com about-me-half */
+    max-width: 45%;
     text-align: left;
     color: var(--light-text-color);
     padding-left: 20px;
@@ -466,20 +466,18 @@ section {
     align-items: flex-start;
 }
 
+/* Títulos dentro de half - já estão alinhados à esquerda e com o espaçamento correto */
 .about-me-half .section-title, .my-skills-half .section-title {
     font-size: 3rem;
-    margin-top: 0;
+    margin-top: 0; 
     margin-bottom: 1.5rem;
-    text-align: left;
-}
-
-.my-skills-half .section-title {
-    margin-left: 0;
-    margin-right: auto;
+    text-align: left; 
+    margin-left: 0; 
+    margin-right: auto; 
 }
 
 .about-me-half .section-title::after, .my-skills-half .section-title::after {
-    margin: 10px 0 0;
+    margin: 10px 0 0; 
 }
 
 .about-me-half p {
@@ -487,19 +485,18 @@ section {
     line-height: 1.6;
     margin-bottom: 1rem;
     text-align: justify;
-    /* ALTERADO: Aumenta a largura máxima para o texto se esticar mais */
-    max-width: 700px; /* Era 600px, para preencher melhor a nova max-width do half */
+    max-width: 700px;
     margin-left: 0;
     margin-right: auto;
 }
 
-/* SKILLS - Sem as caixas para cada grupo (mantido o mesmo, apenas comentado) */
+/* SKILLS - Sem as caixas para cada grupo */
 .skills-group-grid {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin-top: 20px;
-    align-items: flex-start;
+    align-items: flex-start; 
 }
 
 .skill-category {
@@ -534,7 +531,7 @@ section {
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: flex-start;
+    justify-content: flex-start; 
     margin-top: 10px;
 }
 
@@ -570,9 +567,18 @@ section {
     100% { transform: scale(1); box-shadow: none; }
 }
 
-/* SEÇÃO PROJECTS (ALTERADO) */
+/* SEÇÃO PROJECTS */
 .projects-section {
     background-color: var(--background-solid);
+}
+
+.projects-section .section-title {
+    margin-top: 0; 
+    font-size: 3rem; 
+}
+
+.projects-section .section-title::after {
+    margin: 10px 0 0; 
 }
 
 .project-grid {
@@ -580,7 +586,8 @@ section {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     margin-top: 40px;
-    justify-items: center;
+    justify-items: center; 
+    width: 100%; 
 }
 
 .project-card {
@@ -592,8 +599,7 @@ section {
     border: 1px solid var(--border-color);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     width: 100%;
-    /* ALTERADO: Aumenta a largura máxima dos cards de projeto */
-    max-width: 450px; /* Era 400px */
+    max-width: 450px;
 }
 
 .project-card:hover {
@@ -621,46 +627,53 @@ section {
     gap: 15px;
 }
 
-/* SEÇÃO EDUCATION (ALTERADO) */
+/* SEÇÃO EDUCATION */
 .education {
     background-color: var(--background-solid);
 }
 
-.education .container {
-    /* ALTERADO: Aumenta a largura máxima para preencher mais a tela */
-    max-width: 1100px; /* Era 900px */
-    margin: 0 auto;
-    padding: 0 var(--content-horizontal-padding-desktop);
-}
-
 .education .section-title {
-    color: var(--light-text-color);
-    -webkit-text-fill-color: var(--light-text-color);
-    background-image: none;
-    text-align: center;
-    margin: 4rem auto 2rem;
+    background-image: var(--text-gradient-secondary); 
+    --webkit-background-clip: text;
+    --webkit-text-fill-color: transparent;
+    color: transparent;
+    background-clip: text;
+    text-align: left; 
+    margin-top: 0; 
+    font-size: 3rem; 
 }
 
 .education .section-title::after {
-    background: var(--text-gradient-secondary);
-    margin-left: auto;
-    margin-right: auto;
+    background: var(--text-gradient-secondary); 
+    margin: 10px 0 0; 
 }
 
 .education p {
     font-size: 1.15rem;
     line-height: 1.6;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: justify; 
     color: var(--light-text-color);
+    max-width: 900px; 
+    margin-left: 0; 
+    margin-right: auto;
 }
 
-/* FOOTER (mantido o mesmo) */
+/* FOOTER */
 .footer {
     background-color: var(--header-background-solid);
     color: #fff;
     text-align: center;
     padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+.footer .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--content-horizontal-padding-desktop);
+    width: 100%;
 }
 .footer p { margin-bottom: 20px; }
 .footer .social-icons a i {
@@ -680,9 +693,10 @@ section {
     color: transparent !important;
 }
 
-/* RESPONSIVO COM MEDIA QUERIES OTIMIZADAS (ALTERADO) */
+/* RESPONSIVO COM MEDIA QUERIES OTIMIZADAS */
 @media (max-width: 1100px) {
-    .header-content, .container {
+    /* O container já está usando --content-horizontal-padding-tablet aqui */
+    .header-content, .container, .education .container, .footer .container {
         padding-left: var(--content-horizontal-padding-tablet);
         padding-right: var(--content-horizontal-padding-tablet);
     }
@@ -708,22 +722,28 @@ section {
     .profile-image { width: 200px; height: 200px; }
     .circle-1 { width: 280px; height: 280px; }
     .circle-2 { width: 120px; height: 120px; filter: blur(30px); }
-    .section-title { font-size: 3rem; }
+
+    .section-title { 
+        font-size: 2.5rem; 
+        text-align: left; 
+    } 
+    .section-title::after {
+        margin: 10px 0 0; 
+    }
 
     /* Seção combinada em tablet: empilha About Me e My Skills */
     .about-skills-combined {
         flex-direction: column;
-        align-items: center;
-        /* ALTERADO: Usa o padding de tablet */
+        align-items: flex-start; 
         padding: 60px var(--content-horizontal-padding-tablet);
         gap: 60px;
-        max-width: 100%; /* Permite que ocupe a largura total do viewport menos os paddings */
+        max-width: 100%;
     }
     .about-me-half, .my-skills-half {
         max-width: 100%;
-        padding: 0;
-        align-items: center;
-        text-align: center;
+        padding: 0; /* O padding lateral será definido pela section-combined ou pelo container agora */
+        align-items: flex-start; 
+        text-align: left;
     }
     .my-skills-half {
         padding-top: 40px;
@@ -734,22 +754,22 @@ section {
         text-align: justify;
     }
     .about-me-half .section-title, .my-skills-half .section-title {
-        text-align: center;
+        text-align: left; 
     }
     .about-me-half .section-title::after, .my-skills-half .section-title::after {
-        margin: 10px auto 0;
+        margin: 10px 0 0; 
     }
     .skill-category h3 {
-        text-align: center;
+        text-align: left;
     }
     .skill-tags-grid {
-        justify-content: center;
+        justify-content: flex-start;
     }
 }
 
 @media (max-width: 900px) {
-    /* ... (restante das media queries, mantido o mesmo ou com pequenos ajustes de padding/max-width) */
-    .header-content, .container {
+    /* O container já está usando --content-horizontal-padding-tablet aqui */
+    .header-content, .container, .education .container, .footer .container {
         padding-left: var(--content-horizontal-padding-tablet);
         padding-right: var(--content-horizontal-padding-tablet);
     }
@@ -790,10 +810,10 @@ section {
     }
     .project-grid { grid-template-columns: 1fr; }
     .skills-group-grid {
-        justify-content: center;
+        justify-content: flex-start; 
     }
 
-    /* Menu Hamburguer (mantido o mesmo) */
+    /* Menu Hamburguer */
     .session {
         display: none;
         flex-direction: column;
@@ -819,12 +839,23 @@ section {
 }
 
 @media (max-width: 600px) {
-    .header-content, .container {
+    /* Esta é a chave: Garante que o padding horizontal do .container seja o mesmo para todas as seções */
+    .header-content, .container, .education .container, .footer .container {
         padding-left: var(--content-horizontal-padding-mobile);
         padding-right: var(--content-horizontal-padding-mobile);
     }
+
     .logo { font-size: 1.2rem; }
-    .section-title { font-size: 2.2rem; margin: 3rem auto 1.5rem; }
+    
+    .section-title { 
+        font-size: 1.8rem; 
+        margin: 3rem 0 1.5rem; 
+        text-align: left; 
+    }
+    .section-title::after {
+        margin: 10px 0 0; 
+    }
+
     .hero-section {
         padding-top: 60px;
         padding-bottom: 60px;
@@ -837,10 +868,18 @@ section {
     body::before { top: 8%; left: 0%; width: 120px; height: 120px; filter: blur(50px); }
     body::after { bottom: 3%; right: 5%; width: 80px; height: 80px; filter: blur(30px); }
 
-    .about-me-half, .my-skills-half {
-        padding: 0 var(--content-horizontal-padding-mobile);
+    /* A seção combined-about-skills já define o padding */
+    .about-skills-combined {
+        padding-left: var(--content-horizontal-padding-mobile);
+        padding-right: var(--content-horizontal-padding-mobile);
     }
-    .about-me-half p { font-size: 0.9rem; text-align: left; }
+
+    /* Estes .half não precisam de padding próprio se o pai (.about-skills-combined) já tem */
+    .about-me-half, .my-skills-half {
+        padding: 0; /* Remove qualquer padding que possa ter sido aplicado aqui individualmente */
+    }
+
+    .about-me-half p { font-size: 0.9rem; text-align: justify; }
     .skill-category h3 {
         text-align: left;
     }
